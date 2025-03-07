@@ -1,3 +1,4 @@
+import os
 import json
 
 from mybgg.downloader import Downloader
@@ -5,7 +6,8 @@ from mybgg.indexer import Indexer
 from setup_logging import setup_logging
 
 def main(args):
-    SETTINGS = json.load(open("config.json", "rb"))
+    config_path = os.path.join(os.path.dirname(os.path.realpath(__file__)), "config.json")
+    SETTINGS = json.load(open(config_path, "rb"))
 
     downloader = Downloader(
         project_name=SETTINGS["project"]["name"],
